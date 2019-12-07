@@ -12,11 +12,13 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         private readonly ApplicationDbContext _context;
         private readonly DbSet<Vlucht> _flights;
+        private readonly DbSet<Zetel> _zetels;
 
         public FlightRepository(ApplicationDbContext dbContext)
         {
             _context = dbContext;
             _flights = dbContext.Flights;
+            _zetels = dbContext.Zetels;
         }
         public void Add(Vlucht flight)
         {
@@ -36,6 +38,11 @@ namespace On_board_flight_app_backend.Data.Repositories
         public void Remove(Vlucht flight)
         {
             _flights.Remove(flight);
+        }
+
+        public IEnumerable<Zetel> GetZetels()
+        {
+            return _zetels.ToList();
         }
 
         public void SaveChanges()

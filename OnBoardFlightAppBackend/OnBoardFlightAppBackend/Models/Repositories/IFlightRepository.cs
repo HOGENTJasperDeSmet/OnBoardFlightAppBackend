@@ -11,6 +11,7 @@ namespace On_board_flight_app_backend.Models
         Vlucht GetbyId(int id);
         void Add(Vlucht flight);
         void Remove(Vlucht flight);
+        IEnumerable<Zetel> GetZetels();
         void SaveChanges();
     }
 }

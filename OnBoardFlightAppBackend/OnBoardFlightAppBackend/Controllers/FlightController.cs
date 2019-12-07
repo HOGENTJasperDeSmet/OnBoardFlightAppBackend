@@ -1,8 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using On_board_flight_app_backend.DTO;
 using On_board_flight_app_backend.Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace On_board_flight_app_backend.Controllers
@@ -15,11 +22,17 @@ namespace On_board_flight_app_backend.Controllers
     {
         private readonly IFlightRepository _flightRepository;
         private readonly ILocatieRepository _locatieRepository;
+        private readonly SignInManager<IdentityUser<int>> _signInManager;
+        private readonly UserManager<IdentityUser<int>> _userManager;
+        private readonly IConfiguration _config;
 
-        public FlightController(IFlightRepository context, ILocatieRepository context2)
+        public FlightController(IFlightRepository context, ILocatieRepository context2, SignInManager<IdentityUser<int>> signInManager, UserManager<IdentityUser<int>> userManager, IConfiguration config)
         {
             _flightRepository = context;
             _locatieRepository = context2;
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _config = config;
         }
         /// GET: api/Flight
         /// <summary>
@@ -46,6 +59,54 @@ namespace On_board_flight_app_backend.Controllers
                 return NotFound();
             }
             return flight;
+        }
+
+        [HttpGet]
+        [Route("zetels")]
+        public IEnumerable<Zetel> GetZetels()
+        {
+            return _flightRepository.GetZetels();
+        }
+
+        [HttpPost("login")]
+        public async Task<string> Login(LoginDTO model)
+        {
+            var user = await _userManager.FindByNameAsync(model.Email);
+
+            if (user != null)
+            {
+                var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+
+                if (result.Succeeded)
+                {
+                    var roles = await _userManager.GetClaimsAsync(user);
+                    string token = GetToken(user);
+                    return token;
+                }
+            }
+            return null;
+        }
+
+        private String GetToken(IdentityUser<int> user)
+        {
+            // Create the token
+            var claims = new[]
+            {
+              new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+              new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+              null, null,
+              claims,
+              expires: DateTime.Now.AddYears(1),
+              signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
