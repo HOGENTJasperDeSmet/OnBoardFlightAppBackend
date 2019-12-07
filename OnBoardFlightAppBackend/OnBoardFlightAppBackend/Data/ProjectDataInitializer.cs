@@ -32,6 +32,8 @@ namespace On_board_flight_app_backend.Data
                 Passagier p3 = new Passagier() { Voornaam = "Sara", Naam = "Verbeke" };
                 Passagier p4 = new Passagier() { Voornaam = "Celia", Naam = "Vermeulen" };
 
+                p1.Reisgezelschap.Add(p2);
+
                 _dbContext.Passagiers.AddRange(p1, p2, p3, p4);
 
                 Zetel z1 = new Zetel(1, 'A', "Eerste klasse") { Passagier = p1};
@@ -64,6 +66,18 @@ namespace On_board_flight_app_backend.Data
                 _dbContext.Zetels.AddRange(z1, z2);
                 _dbContext.Locaties.AddRange(o1, b1);
                 _dbContext.Flights.Add(f1);
+
+                Groepschat groepschat1 = new Groepschat("de coole chat");
+                groepschat1.passagiers.Add(p1);
+                groepschat1.passagiers.Add(p2);
+
+                ChatBericht cb1 = new ChatBericht(p1, DateTime.Now, "hallo");
+                ChatBericht cb2 = new ChatBericht(p2, DateTime.Now, "dag");
+
+                groepschat1.chatberichten.Add(cb1);
+                groepschat1.chatberichten.Add(cb2);
+
+                _dbContext.Add(groepschat1);
 
                 await CreateUser("personeel@personeel.com", "personeel@personeel.com", "azerty123");
 

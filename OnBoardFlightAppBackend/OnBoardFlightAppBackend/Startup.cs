@@ -21,6 +21,8 @@ using On_board_flight_app_backend.Data;
 using On_board_flight_app_backend.Data.Repositories;
 using On_board_flight_app_backend.Models;
 using On_board_flight_app_backend.Models.Repositories;
+using OnBoardFlightAppBackend.Data.Repositories;
+using OnBoardFlightAppBackend.Models.Repositories;
 
 namespace OnBoardFlightAppBackend
 {
@@ -44,6 +46,7 @@ namespace OnBoardFlightAppBackend
             services.AddScoped<ILocatieRepository, LocatieRepository>();
             services.AddScoped<IPassagierRepository, PassagierRepository>();
             services.AddScoped<IBestellingRepository, BestellingRepository>();
+            services.AddScoped<IGroepsChatRepository, GroepsChatRepository>();
             services.AddScoped<ProjectDataInitializer>();
 
             services.AddOpenApiDocument(c =>

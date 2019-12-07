@@ -22,12 +22,13 @@ namespace On_board_flight_app_backend.Models
         #region Constructors
         public Passagier()
         {
-
+            Reisgezelschap = new List<Passagier>();
         }
         public Passagier(string voornaam, string naam)
         {
             this.Voornaam = voornaam;
             this.Naam = naam;
+            Reisgezelschap = new List<Passagier>();
             generateBoardingpass();
         }
         #endregion

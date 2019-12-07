@@ -31,5 +31,16 @@ namespace On_board_flight_app_backend.Controllers
         {
             return _passengerRepository.GetAll();
         }
+        /// GET: api/Reisgezelschap/id
+        /// <summary>
+        /// Get all Reisgezelschap
+        /// </summary>
+        /// <returns>Array of Passengers</returns>
+        [HttpGet]
+        [Route("Reisgezelschap/{id}")]
+        public IEnumerable<Passagier> GetReisgezelschap(int id)
+        {
+            return _passengerRepository.getReisgezelschap(id);
+        }
     }
 }

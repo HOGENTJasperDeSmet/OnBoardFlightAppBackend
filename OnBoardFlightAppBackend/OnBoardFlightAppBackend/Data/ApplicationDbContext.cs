@@ -19,6 +19,7 @@ namespace On_board_flight_app_backend.Data
         public DbSet<Bestelling> Bestellingen { get; set; }
         public DbSet<BestellingTK> BestellingTKs { get; set; }
         public DbSet<BestellingOptie> BestellingOpties { get; set; }
+        public DbSet<Groepschat> PassagierGroepen { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
               : base(options)
         {

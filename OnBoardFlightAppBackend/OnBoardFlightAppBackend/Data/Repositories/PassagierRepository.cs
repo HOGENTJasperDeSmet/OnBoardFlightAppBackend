@@ -34,6 +34,11 @@ namespace On_board_flight_app_backend.Data.Repositories
             return _passagiers.Include(r => r.Reisgezelschap).SingleOrDefault(s => s.Id == id);
         }
 
+        public IEnumerable<Passagier> getReisgezelschap(int passagier)
+        {
+            return _passagiers.Include(r => r.Reisgezelschap).SingleOrDefault(r => r.Id == passagier).Reisgezelschap;
+        }
+
         public void Remove(Passagier passagier)
         {
             _passagiers.Remove(passagier);
