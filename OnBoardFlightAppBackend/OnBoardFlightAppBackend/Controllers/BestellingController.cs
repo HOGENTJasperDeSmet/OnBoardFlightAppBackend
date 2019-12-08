@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using On_board_flight_app_backend.DTO;
 using On_board_flight_app_backend.Models;
 using On_board_flight_app_backend.Models.Repositories;
+using OnBoardFlightAppBackend.DTO;
 
 namespace On_board_flight_app_backend.Controllers
 {
@@ -24,6 +26,7 @@ namespace On_board_flight_app_backend.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IEnumerable<Bestelling> GetBestellingen()
         {
             return _bestellingRepository.GetAll();
@@ -50,10 +53,11 @@ namespace On_board_flight_app_backend.Controllers
         }
 
         [HttpPut("{id}")]
-        public Bestelling IsAfgehandeld(int id)
+        [Authorize]
+        public Bestelling IsAfgehandeld(int id, AfgehandeldDTO afgehandeldDTO)
         {
             var bestelling = _bestellingRepository.GetById(id);
-            bestelling.Afgehandeld = true;
+            bestelling.Afgehandeld = afgehandeldDTO.Afgehandeld;
             _bestellingRepository.Update(bestelling);
             _bestellingRepository.SaveChanges();
             return bestelling;

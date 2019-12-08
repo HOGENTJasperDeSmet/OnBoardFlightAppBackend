@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using On_board_flight_app_backend.Models;
+using OnBoardFlightAppBackend.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,11 @@ namespace On_board_flight_app_backend.Data
                 Passagier p4 = new Passagier() { Voornaam = "Celia", Naam = "Vermeulen" };
 
                 p1.Reisgezelschap.Add(p2);
+
+                p1.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });
+                p2.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });
+                p3.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });
+                p4.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });
 
                 _dbContext.Passagiers.AddRange(p1, p2, p3, p4);
 

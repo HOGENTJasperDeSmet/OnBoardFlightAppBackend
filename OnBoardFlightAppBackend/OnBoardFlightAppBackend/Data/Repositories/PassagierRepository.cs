@@ -31,7 +31,7 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         public Passagier GetbyId(int id)
         {
-            return _passagiers.Include(r => r.Reisgezelschap).SingleOrDefault(s => s.Id == id);
+            return _passagiers.Include(r => r.Reisgezelschap).Include(p => p.Meldingen).SingleOrDefault(s => s.Id == id);
         }
 
         public IEnumerable<Passagier> getReisgezelschap(int passagier)
@@ -47,6 +47,11 @@ namespace On_board_flight_app_backend.Data.Repositories
         public void SaveChanges()
         {
             _context.SaveChanges();
+        }
+
+        public void Update(Passagier passagier)
+        {
+            _passagiers.Update(passagier);
         }
     }
 }
