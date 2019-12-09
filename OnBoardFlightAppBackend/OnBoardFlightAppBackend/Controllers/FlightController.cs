@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using On_board_flight_app_backend.DTO;
 using On_board_flight_app_backend.Models;
+using OnBoardFlightAppBackend.DTO;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -66,6 +67,28 @@ namespace On_board_flight_app_backend.Controllers
         public IEnumerable<Zetel> GetZetels()
         {
             return _flightRepository.GetZetels();
+        }
+
+        [HttpGet]
+        [Route("zetels/{id}")]
+        public Zetel GetZetel(int id)
+        {
+            return _flightRepository.GetZetelById(id);
+        }
+
+        [HttpPost]
+        [Route("veranderzetel")]
+        public void VeranderZetel(VeranderZetelDTO veranderZetelDTO)
+        {
+            var zetel1 = _flightRepository.GetZetelById(veranderZetelDTO.Id1);
+            var zetel2 = _flightRepository.GetZetelById(veranderZetelDTO.Id2);
+            var passagierOpZetel1 = zetel1.Passagier;
+            var passagierOpZetel2 = zetel2.Passagier;
+            zetel2.Passagier = null;
+            _flightRepository.SaveChanges();
+            zetel1.Passagier = passagierOpZetel2;
+            zetel2.Passagier = passagierOpZetel1;
+            _flightRepository.SaveChanges();
         }
 
         [HttpPost("login")]

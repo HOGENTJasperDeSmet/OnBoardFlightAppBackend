@@ -44,6 +44,9 @@ namespace On_board_flight_app_backend.Data
 
                 Zetel z1 = new Zetel(1, 'A', "Eerste klasse") { Passagier = p1};
                 Zetel z2 = new Zetel(1, 'B', "Eerste klasse") { Passagier = p2};
+                Zetel z3 = new Zetel(1, 'C', "Eerste klasse") { Passagier = p3 };
+                Zetel z4 = new Zetel(2, 'A', "Eerste klasse") { Passagier = p4 };
+                Zetel z5 = new Zetel(2, 'B', "Eerste klasse");
 
                 BestellingOptie optie1 = new BestellingOptie() { Naam = "Fristi", Type = BestellingType.Drinken, Prijs = 4.50 };
                 BestellingOptie optie2 = new BestellingOptie() { Naam = "Water", Type = BestellingType.Drinken, Prijs = 2 };
@@ -69,7 +72,7 @@ namespace On_board_flight_app_backend.Data
                 BestellingTK tk6 = new BestellingTK { BestellingId = bestelling4.Id, BestellingOptie = optie2 };
 
                 _dbContext.BestellingTKs.AddRange(tk1, tk2, tk3, tk4, tk5, tk6);
-                _dbContext.Zetels.AddRange(z1, z2);
+                _dbContext.Zetels.AddRange(z1, z2, z3, z4, z5);
                 _dbContext.Locaties.AddRange(o1, b1);
                 _dbContext.Flights.Add(f1);
 

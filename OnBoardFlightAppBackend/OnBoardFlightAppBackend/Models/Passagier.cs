@@ -13,7 +13,6 @@ namespace On_board_flight_app_backend.Models
     {
         #region Properties
         public int Id { get; set; }
-        public Zetel Zetel { get; set; }
         public string Voornaam { get; set; }
         public string Naam { get; set; }
         // public ICollection<Bestelling> Bestellingen { get; set; }

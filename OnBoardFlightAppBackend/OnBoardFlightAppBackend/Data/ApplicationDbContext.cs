@@ -30,7 +30,7 @@ namespace On_board_flight_app_backend.Data
             builder.ApplyConfiguration(new BestellingTKConfiguration());
             builder.Entity<Zetel>()
             .HasOne(a => a.Passagier)
-            .WithOne(a => a.Zetel)
+            .WithOne()
             .HasForeignKey<Zetel>(c => c.PassagierKey);
             base.OnModelCreating(builder);
         }

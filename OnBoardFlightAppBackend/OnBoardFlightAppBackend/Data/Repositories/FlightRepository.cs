@@ -42,12 +42,17 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         public IEnumerable<Zetel> GetZetels()
         {
-            return _zetels.ToList();
+            return _zetels.Include(z => z.Passagier).OrderBy(z => z.Id).ToList();
         }
 
         public void SaveChanges()
         {
             _context.SaveChanges();
+        }
+
+        public Zetel GetZetelById(int id)
+        {
+            return _zetels.Include(z => z.Passagier).SingleOrDefault(z => z.Id == id);
         }
     }
 }

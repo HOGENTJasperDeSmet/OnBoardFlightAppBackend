@@ -13,5 +13,6 @@ namespace On_board_flight_app_backend.Models
         void Remove(Vlucht flight);
         IEnumerable<Zetel> GetZetels();
         void SaveChanges();
+        Zetel GetZetelById(int id);
     }
 }
