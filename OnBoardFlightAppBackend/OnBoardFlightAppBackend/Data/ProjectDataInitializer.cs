@@ -77,14 +77,14 @@ namespace On_board_flight_app_backend.Data
                 _dbContext.Flights.Add(f1);
 
                 Groepschat groepschat1 = new Groepschat("de coole chat");
-                groepschat1.passagiers.Add(p1);
-                groepschat1.passagiers.Add(p2);
+                groepschat1.Passagiers.Add(p1);
+                groepschat1.Passagiers.Add(p2);
 
                 ChatBericht cb1 = new ChatBericht(p1, DateTime.Now, "hallo");
                 ChatBericht cb2 = new ChatBericht(p2, DateTime.Now, "dag");
 
-                groepschat1.chatberichten.Add(cb1);
-                groepschat1.chatberichten.Add(cb2);
+                groepschat1.Chatberichten.Add(cb1);
+                groepschat1.Chatberichten.Add(cb2);
 
                 _dbContext.Add(groepschat1);
 
