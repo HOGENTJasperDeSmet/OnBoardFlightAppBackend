@@ -26,8 +26,8 @@ namespace OnBoardFlightAppBackend.Controllers
         [Route("Groepschat/{id}")]
         public Groepschat GetReisgezelschap(int id)
         {
-            Passagier passagieer = _passagierRepository.GetbyId(id);
-            return _groepschatRepository.GetGroepschatById(passagieer);
+            Passagier passagier = _passagierRepository.GetbyId(id);
+            return _groepschatRepository.GetGroepschatById(passagier);
         }
     }
 }

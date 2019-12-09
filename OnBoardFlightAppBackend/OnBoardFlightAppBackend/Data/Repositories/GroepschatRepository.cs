@@ -17,7 +17,7 @@ namespace OnBoardFlightAppBackend.Data.Repositories
         public GroepsChatRepository(ApplicationDbContext dbContext)
         {
             _context = dbContext;
-            _groepschatten = dbContext.PassagierGroepen;
+            _groepschatten = dbContext.Groepschatten;
         }
 
         public void Add(Groepschat pg)
@@ -27,7 +27,7 @@ namespace OnBoardFlightAppBackend.Data.Repositories
 
         public Groepschat GetGroepschatById(Passagier passagier)
         {
-            return _groepschatten.Include(s => s.passagiers).Include(b => b.chatberichten).SingleOrDefault(p => p.passagiers.Contains(passagier));
+            return _groepschatten.Include(s => s.Passagiers).Include(b => b.Chatberichten).SingleOrDefault(p => p.Passagiers.Contains(passagier));
         }
 
         public void SaveChanges()
