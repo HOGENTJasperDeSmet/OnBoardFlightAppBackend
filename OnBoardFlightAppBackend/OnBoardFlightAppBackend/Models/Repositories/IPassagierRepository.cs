@@ -12,7 +12,6 @@ namespace On_board_flight_app_backend.Models
         void Add(Passagier passagier);
         void Remove(Passagier passagier);
         void Update(Passagier passagier);
-        IEnumerable<Passagier> getReisgezelschap(int passagier);
         void SaveChanges();
     }
 }

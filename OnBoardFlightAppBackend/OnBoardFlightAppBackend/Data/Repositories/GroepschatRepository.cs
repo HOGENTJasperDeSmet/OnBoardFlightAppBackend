@@ -25,9 +25,15 @@ namespace OnBoardFlightAppBackend.Data.Repositories
             _groepschatten.Add(pg);
         }
 
-        public Groepschat GetGroepschatById(Passagier passagier)
+        public Groepschat GetGroepschatById(int id)
         {
-            return _groepschatten.Include(s => s.Passagiers).Include(b => b.Chatberichten).SingleOrDefault(p => p.Passagiers.Contains(passagier));
+            var chats = _groepschatten.Include(b => b.Chatberichten).ThenInclude(a => a.Passagier).SingleOrDefault(p => p.Id == id);
+            //zonder dit krijg je een infinite loop 
+            foreach (var chat in chats.Chatberichten)
+            {
+                chat.Passagier.Groepschat = null;
+            }
+            return chats;
         }
 
         public void SaveChanges()

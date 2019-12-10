@@ -9,7 +9,7 @@ namespace OnBoardFlightAppBackend.Models.Repositories
     public interface IGroepsChatRepository
     {
         void Add(Groepschat pg);
-        Groepschat GetGroepschatById(Passagier passagier);
+        Groepschat GetGroepschatById(int id);
         void SaveChanges();
     }
 }

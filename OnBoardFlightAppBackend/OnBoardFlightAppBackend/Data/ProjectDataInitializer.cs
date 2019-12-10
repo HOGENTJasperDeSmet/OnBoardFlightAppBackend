@@ -33,7 +33,6 @@ namespace On_board_flight_app_backend.Data
                 Passagier p3 = new Passagier() { Voornaam = "Sara", Naam = "Verbeke" };
                 Passagier p4 = new Passagier() { Voornaam = "Celia", Naam = "Vermeulen" };
 
-                p1.Reisgezelschap.Add(p2);
 
                 p1.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });
                 p2.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });
