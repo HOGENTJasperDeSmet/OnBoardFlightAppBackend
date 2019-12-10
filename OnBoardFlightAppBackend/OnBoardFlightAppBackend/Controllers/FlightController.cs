@@ -73,7 +73,11 @@ namespace On_board_flight_app_backend.Controllers
         [Route("zetels/{id}")]
         public Zetel GetZetel(int id)
         {
-            return _flightRepository.GetZetelById(id);
+            var z = _flightRepository.GetZetelById(id);
+            var x = z.Passagier.Groepschat.Passagiers.Select(p => p.clone()).ToList();
+            z.Passagier.Groepschat.Passagiers = x;
+            //z.Passagier.Groepschat.Chatberichten.ForEach(c => c.Passagier = c.Passagier.clone());
+            return z;
         }
 
         [HttpPost]
