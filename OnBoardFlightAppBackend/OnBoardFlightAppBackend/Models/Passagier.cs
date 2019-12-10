@@ -26,6 +26,10 @@ namespace On_board_flight_app_backend.Models
         {
             Meldingen = new List<Melding>();
         }
+        public Passagier clone()
+        {
+            return new Passagier() { Id = this.Id, Voornaam = this.Voornaam, Naam = this.Naam ,Groepschat =null};
+        }
         public Passagier(string voornaam, string naam, Groepschat groepschat)
         {
             this.Voornaam = voornaam;

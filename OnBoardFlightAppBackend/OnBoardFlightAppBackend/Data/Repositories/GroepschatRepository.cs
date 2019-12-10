@@ -28,11 +28,6 @@ namespace OnBoardFlightAppBackend.Data.Repositories
         public Groepschat GetGroepschatById(int id)
         {
             var chats = _groepschatten.Include(b => b.Chatberichten).ThenInclude(a => a.Passagier).SingleOrDefault(p => p.Id == id);
-            //zonder dit krijg je een infinite loop 
-            foreach (var chat in chats.Chatberichten)
-            {
-                chat.Passagier.Groepschat = null;
-            }
             return chats;
         }
 
