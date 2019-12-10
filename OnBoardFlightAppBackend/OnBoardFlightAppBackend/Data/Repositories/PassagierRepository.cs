@@ -26,12 +26,12 @@ namespace On_board_flight_app_backend.Data.Repositories
         public IEnumerable<Passagier> GetAll()
         {
             //Bestellingen ook nog includen
-            return _passagiers.Include(r => r.Groepschat).ToList();
+            return _passagiers.ToList();
         }
 
         public Passagier GetbyId(int id)
         {
-            return _passagiers.Include(r => r.Groepschat).Include(p => p.Meldingen).SingleOrDefault(s => s.Id == id);
+            return _passagiers.Include(p => p.Meldingen).SingleOrDefault(s => s.Id == id);
         }
 
         public void Remove(Passagier passagier)

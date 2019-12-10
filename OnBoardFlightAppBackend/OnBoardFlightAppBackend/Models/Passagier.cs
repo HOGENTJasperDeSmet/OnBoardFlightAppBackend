@@ -17,6 +17,7 @@ namespace On_board_flight_app_backend.Models
         public string Naam { get; set; }
         // public ICollection<Bestelling> Bestellingen { get; set; }
         public Groepschat Groepschat { get; set; }
+        public int? GroepschatId { get; set; }
         public ICollection<Melding> Meldingen { get; set; }
         #endregion
 

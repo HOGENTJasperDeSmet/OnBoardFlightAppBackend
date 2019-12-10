@@ -52,7 +52,7 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         public Zetel GetZetelById(int id)
         {
-            return _zetels.Include(z => z.Passagier).ThenInclude(p => p.Groepschat).ThenInclude(s => s.Passagiers).SingleOrDefault(z => z.Id == id);
+            return _zetels.Include(z => z.Passagier).SingleOrDefault(z => z.Id == id);
         }
     }
 }

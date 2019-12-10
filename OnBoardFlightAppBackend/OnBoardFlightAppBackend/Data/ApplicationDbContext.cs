@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using On_board_flight_app_backend.Data.Mappers;
 using On_board_flight_app_backend.Models;
+using OnBoardFlightAppBackend.Data.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +29,9 @@ namespace On_board_flight_app_backend.Data
         {
             builder.ApplyConfiguration(new BestellingConfiguration());
             builder.ApplyConfiguration(new BestellingTKConfiguration());
-            builder.Entity<Zetel>()
-            .HasOne(a => a.Passagier)
-            .WithOne()
-            .HasForeignKey<Zetel>(c => c.PassagierKey);
+            builder.ApplyConfiguration(new PassagierConfiguration());
+            builder.ApplyConfiguration(new ZetelConfiguration());
+            builder.ApplyConfiguration(new GroepschatConfiguration());
             base.OnModelCreating(builder);
         }
     }
