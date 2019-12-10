@@ -27,7 +27,7 @@ namespace OnBoardFlightAppBackend.Data.Repositories
 
         public Groepschat GetGroepschatById(int id)
         {
-            var chats = _groepschatten.Include(b => b.Chatberichten).ThenInclude(a => a.Passagier).SingleOrDefault(p => p.Id == id);
+            var chats = _groepschatten.Include(p => p.Passagiers).Include(b => b.Chatberichten).SingleOrDefault(p => p.Id == id);
             return chats;
         }
 
