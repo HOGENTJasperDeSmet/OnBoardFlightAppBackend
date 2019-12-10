@@ -33,17 +33,6 @@ namespace On_board_flight_app_backend.Controllers
         {
             return _passengerRepository.GetAll();
         }
-        /// GET: api/Reisgezelschap/id
-        /// <summary>
-        /// Get all Reisgezelschap
-        /// </summary>
-        /// <returns>Array of Passengers</returns>
-        [HttpGet]
-        [Route("Reisgezelschap/{id}")]
-        public IEnumerable<Passagier> GetReisgezelschap(int id)
-        {
-            return _passengerRepository.getReisgezelschap(id);
-        }
 
         [HttpGet]
         [Route("melding/{id}")]
@@ -71,6 +60,15 @@ namespace On_board_flight_app_backend.Controllers
                 var melding = new Melding() { Inhoud = meldingDTO.Inhoud };
                 p.Meldingen.Add(melding);
             }
+            _passengerRepository.SaveChanges();
+        }
+
+        [HttpPost]
+        [Route("chatbericht")]
+        public void AddChatBericht(int passagierId,ChatBericht chatbericht)
+        {
+            Passagier passagier = _passengerRepository.GetbyId(passagierId);
+            passagier.Groepschat.Chatberichten.Add(chatbericht);
             _passengerRepository.SaveChanges();
         }
     }

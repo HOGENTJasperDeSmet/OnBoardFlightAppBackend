@@ -14,7 +14,7 @@ namespace On_board_flight_app_backend.Data
         {
             builder.ToTable("Passagier");
             builder.HasKey(f => f.Id);
-            builder.HasMany(c => c.Reisgezelschap);
+            builder.HasOne(c => c.Groepschat);
         }
     }
 }

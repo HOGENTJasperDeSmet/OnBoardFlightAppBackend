@@ -25,7 +25,7 @@ namespace On_board_flight_app_backend.Data
             if (_dbContext.Database.EnsureCreated())
             {
                 Locatie o1 = new Locatie("New York", "Avenue 555");
-                Locatie b1 = new Locatie("Zaventem", "Brussel");
+                Locatie b1 = new Locatie("Iceland", "Brussel");
                 Vlucht f1 = new Vlucht("UC751", o1, b1, 5, new Vliegtuig());
 
                 Passagier p1 = new Passagier() { Voornaam = "Jan", Naam = "Janssens" };
@@ -33,7 +33,6 @@ namespace On_board_flight_app_backend.Data
                 Passagier p3 = new Passagier() { Voornaam = "Sara", Naam = "Verbeke" };
                 Passagier p4 = new Passagier() { Voornaam = "Celia", Naam = "Vermeulen" };
 
-                p1.Reisgezelschap.Add(p2);
 
                 p1.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });
                 p2.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });
