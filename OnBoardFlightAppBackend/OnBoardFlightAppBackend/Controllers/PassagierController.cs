@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using On_board_flight_app_backend.Models;
 using OnBoardFlightAppBackend.DTO;
@@ -42,6 +43,7 @@ namespace On_board_flight_app_backend.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("melding/{id}")]
         public void AddMelding(int id, MeldingDTO meldingDTO)
         {
@@ -52,8 +54,9 @@ namespace On_board_flight_app_backend.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("melding")]
-        public void AddMeldingToAll(int id, MeldingDTO meldingDTO)
+        public void AddMeldingToAll(MeldingDTO meldingDTO)
         {
             foreach(var p in _passengerRepository.GetAll())
             {
