@@ -12,7 +12,7 @@ namespace On_board_flight_app_backend.Models
         public string Naam { get; set; }
         public Locatie Origine { get; set; }
         public Locatie Bestemming { get; set; }
-        //public PassagierGroep passagiersGroepen { get; set; }
+        public DateTime departureTime { get; set; }
         public Vliegtuig Vliegtuig { get; set; }
         public int DuurInUren { get; set; }
         #endregion

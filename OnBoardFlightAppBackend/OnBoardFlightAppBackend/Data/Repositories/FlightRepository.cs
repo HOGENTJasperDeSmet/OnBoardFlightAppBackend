@@ -32,7 +32,10 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         public Vlucht GetbyId(int id)
         {
-            return _flights.Include(o => o.Origine).Include(b => b.Bestemming).Include(vlucht => vlucht.Vliegtuig).SingleOrDefault(f => f.Id == id);
+            var flight = _flights.Include(o => o.Origine).Include(b => b.Bestemming).Include(vlucht => vlucht.Vliegtuig).SingleOrDefault(f => f.Id == id);
+            flight.departureTime = DateTime.Now;
+            _context.SaveChanges();
+            return flight;
         }
 
         public void Remove(Vlucht flight)

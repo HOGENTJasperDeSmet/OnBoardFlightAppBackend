@@ -25,6 +25,8 @@ namespace On_board_flight_app_backend.Models
         public Passagier()
         {
             Meldingen = new List<Melding>();
+            generateBoardingpass();
+
         }
         public Passagier clone()
         {

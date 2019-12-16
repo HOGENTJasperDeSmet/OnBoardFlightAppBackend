@@ -24,8 +24,8 @@ namespace On_board_flight_app_backend.Data
             _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
-                Locatie o1 = new Locatie("Brussels", "Avenue 555");
-                Locatie b1 = new Locatie("Iceland", "Brussel");
+                Locatie o1 = new Locatie("Brussels", "Avenue 555", 50.900864, 4.484738);
+                Locatie b1 = new Locatie("Iceland", "Brussel", 63.978513, -22.635057);
                 Vlucht f1 = new Vlucht("UC751", o1, b1, 5, new Vliegtuig());
 
                 Passagier p1 = new Passagier() { Voornaam = "Jan", Naam = "Janssens" };
