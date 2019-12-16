@@ -28,10 +28,10 @@ namespace On_board_flight_app_backend.Data
                 Locatie b1 = new Locatie("Iceland", "Brussel", 63.978513, -22.635057);
                 Vlucht f1 = new Vlucht("UC751", o1, b1, 5, new Vliegtuig());
 
-                Passagier p1 = new Passagier() { Voornaam = "Jan", Naam = "Janssens" };
-                Passagier p2 = new Passagier() { Voornaam = "Jef", Naam = "Vanvoort" };
-                Passagier p3 = new Passagier() { Voornaam = "Sara", Naam = "Verbeke" };
-                Passagier p4 = new Passagier() { Voornaam = "Celia", Naam = "Vermeulen" };
+                Passagier p1 = new Passagier(1, "Jan", "Janssens");
+                Passagier p2 = new Passagier(2, "Jef", "Vanvoort");
+                Passagier p3 = new Passagier(3,"Sara", "Verbeke");
+                Passagier p4 = new Passagier(4,"Celia", "Vermeulen"); 
 
 
                 p1.Meldingen.Add(new Melding() { Inhoud = "Welkom aan boord!" });

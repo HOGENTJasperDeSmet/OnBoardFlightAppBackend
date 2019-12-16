@@ -31,7 +31,7 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         public Passagier GetbyId(int id)
         {
-            return _passagiers.Include(p => p.Meldingen).SingleOrDefault(s => s.Id == id);
+            return _passagiers.Include(g => g.Groepschat).Include(p => p.Meldingen).SingleOrDefault(s => s.Id == id);
         }
 
         public void Remove(Passagier passagier)

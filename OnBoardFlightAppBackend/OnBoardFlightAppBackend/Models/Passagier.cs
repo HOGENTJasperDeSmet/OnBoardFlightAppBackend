@@ -22,21 +22,20 @@ namespace On_board_flight_app_backend.Models
         #endregion
 
         #region Constructors
-        public Passagier()
-        {
-            Meldingen = new List<Melding>();
-            generateBoardingpass();
-
-        }
         public Passagier clone()
         {
             return new Passagier() { Id = this.Id, Voornaam = this.Voornaam, Naam = this.Naam ,Groepschat =null};
         }
-        public Passagier(string voornaam, string naam, Groepschat groepschat)
+        private Passagier()
         {
+
+        }
+        public Passagier(int id, string voornaam, string naam)
+        {
+            this.Id = id;
             this.Voornaam = voornaam;
             this.Naam = naam;
-            Groepschat = groepschat;
+            Meldingen = new List<Melding>();
             generateBoardingpass();
         }
         #endregion

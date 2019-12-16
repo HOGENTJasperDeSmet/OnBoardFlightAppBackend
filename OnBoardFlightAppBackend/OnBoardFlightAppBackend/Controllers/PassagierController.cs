@@ -67,11 +67,11 @@ namespace On_board_flight_app_backend.Controllers
         }
 
         [HttpPost]
-        [Route("chatbericht")]
-        public void AddChatBericht(int passagierId,ChatBericht chatbericht)
+        [Route("chatbericht/{id}")]
+        public void AddChatBericht(int id, ChatBericht chatbericht)
         {
-            Passagier passagier = _passengerRepository.GetbyId(passagierId);
-            //passagier.Groepschat.Chatberichten.Add(chatbericht);
+            Passagier passagier = _passengerRepository.GetbyId(id);
+            passagier.Groepschat.Chatberichten.Add(chatbericht);
             _passengerRepository.SaveChanges();
         }
     }
