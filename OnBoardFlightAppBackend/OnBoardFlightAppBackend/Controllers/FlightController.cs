@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -75,14 +76,18 @@ namespace On_board_flight_app_backend.Controllers
         public Zetel GetZetel(int id)
         {
             var z = _flightRepository.GetZetelById(id);
-            var x = z.Passagier.Groepschat.Passagiers.Select(p => p.clone()).ToList();
-            z.Passagier.Groepschat.Passagiers = x;
+            if(z.Passagier != null)
+            {
+                var x = z.Passagier.Groepschat.Passagiers.Select(p => p.clone()).ToList();
+                z.Passagier.Groepschat.Passagiers = x;
+            }
             //z.Passagier.Groepschat.Chatberichten.ForEach(c => c.Passagier = c.Passagier.clone());
             return z;
         }
 
         [HttpPost]
         [Route("veranderzetel")]
+        [Authorize]
         public void VeranderZetel(VeranderZetelDTO veranderZetelDTO)
         {
             var zetel1 = _flightRepository.GetZetelById(veranderZetelDTO.Id1);
