@@ -45,7 +45,15 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         public IEnumerable<Zetel> GetZetels()
         {
-            return _zetels.Include(z => z.Passagier).OrderBy(z => z.Id).ToList();
+            var zetels = _zetels.Include(z => z.Passagier).OrderBy(z => z.Id).ToList();
+            foreach(var zetel in zetels)
+            {
+                if(zetel.Passagier != null)
+                {
+                    zetel.Passagier.Zetel = null;
+                }
+            }
+            return zetels;
         }
 
         public void SaveChanges()
@@ -55,7 +63,12 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         public Zetel GetZetelById(int id)
         {
-            return _zetels.Include(z => z.Passagier).ThenInclude(p => p.Groepschat).ThenInclude(s => s.Chatberichten).Include(p=> p.Passagier.Groepschat.Passagiers).Include(p => p.Passagier.Meldingen).SingleOrDefault(z => z.Id == id);
+            var zetel = _zetels.Include(z => z.Passagier).ThenInclude(p => p.Groepschat).ThenInclude(s => s.Chatberichten).Include(p=> p.Passagier.Groepschat.Passagiers).Include(p => p.Passagier.Meldingen).SingleOrDefault(z => z.Id == id);
+            if (zetel.Passagier != null)
+            {
+                zetel.Passagier.Zetel = null;
+            }
+            return zetel;
         }
     }
 }

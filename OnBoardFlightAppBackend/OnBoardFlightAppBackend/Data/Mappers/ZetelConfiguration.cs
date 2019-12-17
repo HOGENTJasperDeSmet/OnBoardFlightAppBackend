@@ -17,7 +17,7 @@ namespace On_board_flight_app_backend.Data
             builder.Property(f => f.Rij);
             builder.Property(f => f.Klasse);
             builder.Property(f => f.Stoel);
-            builder.HasOne(a => a.Passagier).WithOne().HasForeignKey<Zetel>(c => c.PassagierKey);
+            builder.HasOne(a => a.Passagier).WithOne(p => p.Zetel).HasForeignKey<Zetel>(c => c.PassagierKey);
         }
     }
 }

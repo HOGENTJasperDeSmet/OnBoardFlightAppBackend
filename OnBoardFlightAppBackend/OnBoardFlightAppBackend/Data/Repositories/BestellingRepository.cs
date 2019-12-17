@@ -36,7 +36,12 @@ namespace On_board_flight_app_backend.Data.Repositories
 
         public IEnumerable<Bestelling> GetAll()
         {
-            return _bestellingen.AsNoTracking().Include(b => b.Passagier).Include(b => b.BestellingTKs).ThenInclude(b => b.BestellingOptie).ToList();
+            var bestellingen = _bestellingen.AsNoTracking().Include(b => b.Passagier).Include(b => b.BestellingTKs).ThenInclude(b => b.BestellingOptie).Include(b => b.Passagier).ThenInclude(p => p.Zetel).ToList();
+            foreach(var bestelling in bestellingen)
+            {
+                bestelling.Passagier.Zetel.Passagier = null;
+            }
+            return bestellingen;
         }
 
         public IEnumerable<Bestelling> GetAllOf(int id)

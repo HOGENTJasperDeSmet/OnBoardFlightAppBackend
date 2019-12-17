@@ -71,8 +71,11 @@ namespace On_board_flight_app_backend.Controllers
         public void AddChatBericht(int id, ChatBericht chatbericht)
         {
             Passagier passagier = _passengerRepository.GetbyId(id);
-            passagier.Groepschat.Chatberichten.Add(chatbericht);
-            _passengerRepository.SaveChanges();
+            if(passagier.Groepschat != null)
+            {
+                passagier.Groepschat.Chatberichten.Add(chatbericht);
+                _passengerRepository.SaveChanges();
+            }
         }
     }
 }

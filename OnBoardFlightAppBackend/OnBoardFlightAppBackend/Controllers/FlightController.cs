@@ -78,8 +78,11 @@ namespace On_board_flight_app_backend.Controllers
             var z = _flightRepository.GetZetelById(id);
             if(z.Passagier != null)
             {
-                var x = z.Passagier.Groepschat.Passagiers.Select(p => p.clone()).ToList();
-                z.Passagier.Groepschat.Passagiers = x;
+                if(z.Passagier.Groepschat != null)
+                {
+                    var x = z.Passagier.Groepschat.Passagiers.Select(p => p.clone()).ToList();
+                    z.Passagier.Groepschat.Passagiers = x;
+                }
             }
             //z.Passagier.Groepschat.Chatberichten.ForEach(c => c.Passagier = c.Passagier.clone());
             return z;
